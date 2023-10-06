@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Password Generator</title>
+</head>
+<body>
+    <h1>Password Generator</h1>
+    
+    <form id="passwordForm">
+        <label for="firstName">First Name:</label>
+        <input type="text" id="firstName" required><br>
+
+        <label for="middleName">Middle Name:</label>
+        <input type="text" id="middleName" required><br>
+
+        <label for="lastName">Last Name:</label>
+        <input type="text" id="lastName" required><br>
+
+        <button type="button" id="generateButton">Generate Password</button>
+    </form>
+
+    <div id="passwordResult"></div>
+
+    <script>
+        function generatePassword(firstName, middleName, lastName) {
+            // JavaScript logic to generate the password (same as before)
+
+            const firstChars = firstName.slice(0, 2);
+            const middleChars = middleName.slice(0, 2);
+            const lastChars = lastName.slice(0, 2);
+        
+            const randomNumber = Math.floor(Math.random() * 1000).toString().padStart(3, '0');
+        
+            const password = `${firstChars}${middleChars}${lastChars}${randomNumber}`;
+        
+            return password;
+        }
+
+        const generateButton = document.getElementById("generateButton");
+        const passwordResult = document.getElementById("passwordResult");
+
+        generateButton.addEventListener("click", function () {
+            const firstName = document.getElementById("firstName").value;
+            const middleName = document.getElementById("middleName").value;
+            const lastName = document.getElementById("lastName").value;
+
+            const password = generatePassword(firstName, middleName, lastName);
+
+            passwordResult.innerHTML = `Generated Password: ${password}`;
+        });
+    </script>
+</body>
+</html>
